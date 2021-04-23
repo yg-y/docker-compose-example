@@ -1,0 +1,17 @@
+version: '2'
+services:
+  mobikok-nginx:
+    image: nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./conf/nginx-balance.conf:/etc/nginx/nginx-balance.conf
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - young
+
+networks:
+  young:
+    driver: bridge

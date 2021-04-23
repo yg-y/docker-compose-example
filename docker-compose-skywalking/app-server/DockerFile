@@ -1,0 +1,13 @@
+FROM jdk-8.0-skywalking-8:0.0.1
+
+LABEL maintainer="young.yg@foxmail.com"
+
+ENV SW_APPLICATION_CODE=serve-app \
+    SW_COLLECTOR_SERVERS=127.0.0.1:11800,127.0.0.1:12800
+
+COPY app.jar /app.jar
+
+EXPOSE 8088
+
+# 更多参数请参考官方agent.config文件
+ENTRYPOINT java -javaagent:/app/skywalking/agent/skywalking-agent.jar -Dskywalking.agent.service_name=${SW_APPLICATION_CODE} -Dskywalking.collector.backend_service=${SW_COLLECTOR_SERVERS} -Dserver.port=8088 -jar /app.jar

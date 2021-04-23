@@ -1,0 +1,17 @@
+FROM centos:7
+
+WORKDIR /app
+
+RUN yum install -y wget && \
+    yum install -y java-1.8.0-openjdk
+
+# 从官网上下载这个文件，放到同级目录
+# 下载链接：http://skywalking.apache.org/downloads/   ---> all
+# 下载链接：https://www.apache.org/dyn/closer.cgi/skywalking/8.5.0/apache-skywalking-apm-es7-8.5.0.tar.gz   ---> 8.5.0
+COPY ./apache-skywalking-apm-es7-8.5.0.tar.gz /app
+
+# 解压放到指定文件下 ，我这里放到 /app/skywalking 目录下
+RUN tar -xf apache-skywalking-apm-es7-8.5.0.tar.gz && \
+    mv apache-skywalking-apm-bin-es7 skywalking
+
+RUN ls /app
