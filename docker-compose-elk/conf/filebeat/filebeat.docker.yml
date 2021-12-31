@@ -1,0 +1,18 @@
+# 增加下面的配置 (收集 .log 数据 把数据发送到当前网络5044端口 (logstash 端口) )
+# 这个地方的 .log 要保证有几条测试数据
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/nginx/*.log
+
+output.logstash:
+  hosts: ['{ip}:5044']
+
+# 运行Filebeat
+
+# 请更改下面两个路径
+  {nginx-path} = 本地的日志文件目录（映射到容器中 作为数据源）
+  {path} = Filebeat配置文件路径
+  {ip} = elasticsearch 地址
+  docker run --name filebeat --user=root -d --net somenetwork --volume="{nginx-path}:/var/log/nginx/" --volume="{path}/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro" --volume="/var/lib/docker/containers:/var/lib/docker/containers:ro" --volume="/var/run/docker.sock:/var/run/docker.sock:ro" store/elastic/filebeat:7.1.1

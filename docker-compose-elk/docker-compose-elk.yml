@@ -5,9 +5,11 @@ services:
     container_name: elk_elasticsearch  #定义容器名称
     restart: always  #开机启动，失败也会一直重启
     environment:
-      - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
-      - "discovery.type=single-node" #以单一节点模式启动
-      - "ES_JAVA_OPTS=-Xms512m -Xmx1024m" #设置使用jvm内存大小
+      # 开启内存锁定
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      # 指定单节点启动
+      - discovery.type=single-node
     volumes:
       - ./conf/elasticsearch/plugins:/usr/share/elasticsearch/plugins #插件文件挂载
       - ./conf/elasticsearch/data:/usr/share/elasticsearch/data #数据文件挂载
@@ -35,6 +37,21 @@ services:
       - elasticsearch:es #可以用es这个域名访问elasticsearch服务
     ports:
       - "4560:4560"
+#  filebeat:
+#    image: elastic/filebeat:7.9.2
+#    hostname: filebeat
+#    restart: always
+#    depends_on:
+#      - logstash
+#    user: root
+#    volumes:
+#      - ./conf/data/filebeat:/usr/share/filebeat/data
+#      - ./conf/filebeat/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml
+#      - ./conf/log:/usr/share/filebeat/logs
+#      - /var/run/docker.sock:/var/run/docker.sock
+#    environment:
+#      - TZ=Asia/Shanghai
+#    command: [ "--strict.perms=false" ]
 
 #汉化kibana
 #docker exec -it elk_kibana /bin/bash -c "echo "i18n.locale: zh-CN" >> /opt/kibana/config/kibana.yml"
