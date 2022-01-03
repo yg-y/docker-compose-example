@@ -1,7 +1,7 @@
 version: '3'
 services:
   elasticsearch:
-    image: elasticsearch:7.7.0  #镜像
+    image: elasticsearch:7.8.0  #镜像
     container_name: elk_elasticsearch  #定义容器名称
     restart: always  #开机启动，失败也会一直重启
     environment:
@@ -16,7 +16,7 @@ services:
     ports:
       - "9200:9200"
   kibana:
-    image: kibana:7.7.0
+    image: kibana:7.8.0
     container_name: elk_kibana
     restart: always
     depends_on:
@@ -26,7 +26,7 @@ services:
     ports:
       - "5601:5601"
   logstash:
-    image: logstash:7.7.0
+    image: logstash:7.8.0
     container_name: elk_logstash
     restart: always
     volumes:
