@@ -1,0 +1,13 @@
+version: '3'
+services:
+  logstash:
+    image: logstash:7.8.0
+    container_name: elk-logstash
+    restart: always
+    ports:
+      - "5045:5045" #设置端口
+    environment:
+      XPACK_MONITORING_ENABLED: "false"
+      pipeline.batch.size: 10
+    volumes:
+      - ./conf/logstash/logstash-springboot.conf:/usr/share/logstash/pipeline/logstash.conf
