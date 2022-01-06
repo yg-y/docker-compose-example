@@ -5,7 +5,7 @@ services:
     container_name: elk-logstash
     restart: always
     ports:
-      - "5045:5045" #设置端口
+      - "4560:4560" #设置端口
     environment:
       XPACK_MONITORING_ENABLED: "false"
       pipeline.batch.size: 10
