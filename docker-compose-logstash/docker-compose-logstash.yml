@@ -6,6 +6,7 @@ services:
     restart: always
     ports:
       - "4560:4560" #设置端口
+      - "4561:4561" #设置端口
     environment:
       XPACK_MONITORING_ENABLED: "false"
       pipeline.batch.size: 10
