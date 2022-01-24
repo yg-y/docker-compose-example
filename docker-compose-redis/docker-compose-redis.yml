@@ -1,13 +1,13 @@
 version: '2'
 services:
   redis:
-    image: redis:4.0.13
+    image: redis:latest
     restart: always
     command: redis-server --requirepass 123456
     ports:
       - 6379:6379
-    volumes:
-      - /data/docker/data/redis:/data
+#    volumes:
+#      - /data/docker/data/redis:/data
     #      - /home/workspace/mobikok-op/docker/redis.conf:/usr/local/etc/redis/redis.conf
     #      - /home/workspace/mobikok-op/docker/redis.conf:/etc/redis/redis.conf
     environment:
