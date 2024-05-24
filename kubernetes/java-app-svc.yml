@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: country-company-info-svc
+spec:
+  selector:
+    app: country-company-info
+  ports:
+    - protocol: TCP
+      port: 8097
+      targetPort: 8080
+  type: NodePort
