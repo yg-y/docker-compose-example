@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: country-company-info
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: country-company-info
+  template:
+    metadata:
+      labels:
+        app: country-company-info
+    spec:
+      containers:
+        - name: my-java-app
+          image: registry.youkeshu.com:5000/yks/country-company-info:1.0.0
+          ports:
+            - containerPort: 8080

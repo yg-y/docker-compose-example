@@ -25,17 +25,6 @@ services:
       - 9200:9200
     networks:
       - young
-  kibana:
-    image: kibana:7.8.0
-    container_name: elk-kibana
-    restart: always
-    environment:
-      ELASTICSEARCH_HOSTS: http://elk-es:9200
-      I18N_LOCALE: zh-CN
-    ports:
-      - 5601:5601
-    networks:
-      - young
 
 networks:
   young:
