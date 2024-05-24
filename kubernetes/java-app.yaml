@@ -12,6 +12,7 @@ spec:
       labels:
         app: country-company-info
     spec:
+      restartPolicy: Always
       containers:
         - name: my-java-app
           image: registry.youkeshu.com:5000/yks/country-company-info:1.0.0

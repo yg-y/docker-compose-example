@@ -9,4 +9,5 @@ spec:
     - protocol: TCP
       port: 8097
       targetPort: 8080
+      nodePort: 32213
   type: NodePort
