@@ -12,7 +12,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="docker-compose-config-example" target="1.5" />
-      <module name="docker-compose-example" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

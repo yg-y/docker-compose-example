@@ -1,11 +1,12 @@
-version: '2'
+version: '3.2'
 services:
   mysql:
-    image: mysql:latest
+    image: mysql:8.3.0
     container_name: mysql-server
     environment:
-      - MYSQL_ROOT_PASSWORD=123456
+     - MYSQL_ROOT_PASSWORD=kjan#!2a
     ports:
       - 3306:3306
+    volumes:
+      - /var/mysql:/var/lib/mysql
     restart: always
-    hostname: mysql
